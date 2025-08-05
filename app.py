@@ -1,4 +1,3 @@
-
 from flask_cors import CORS
 from flask import Flask, request, jsonify
 import csv
@@ -7,6 +6,11 @@ import json
 
 app = Flask(__name__)
 CORS(app)
+
+# ✅ Health check route
+@app.route('/', methods=['GET'])
+def health_check():
+    return jsonify({'status': 'Backend is live 🚀'}), 200
 
 def clean_key(key):
     return key.replace('\ufeff', '').replace('"', '').strip()
